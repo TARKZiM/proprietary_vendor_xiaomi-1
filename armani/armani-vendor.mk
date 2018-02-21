@@ -1,4 +1,4 @@
-# Copyright (C) 2016 The CyanogenMod Project
+# Copyright (C) 2018 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,12 +21,21 @@ PRODUCT_PACKAGES += \
 # Prebuilt vendor/libs needed for compilation
 PRODUCT_PACKAGES += \
     libqminvapi \
+    libmdmdetect \
+    libTimeService \
+    libdiag \
+    libdsutils \
+    libidl \
+    libqcci_legacy \
+    libqmi \
+    libqmi_client_qmux \
+    libqmiservices \
     libtime_genoff \
     vendor.qti.hardware.fm@1.0
 
 # ADSP (TheMuppets Motorola msm8226-common)
 PRODUCT_COPY_FILES += \
-    vendor/xiaomi/armani/proprietary/bin/adsprpcd:system/bin/adsprpcd \
+    vendor/xiaomi/armani/proprietary/vendor/bin/adsprpcd:system/vendor/bin/adsprpcd \
     vendor/xiaomi/armani/proprietary/vendor/lib/libadsprpc.so:system/vendor/lib/libadsprpc.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libfastcvadsp_stub.so:system/vendor/lib/libfastcvadsp_stub.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libfastcvopt.so:system/vendor/lib/libfastcvopt.so \
@@ -61,14 +70,15 @@ PRODUCT_COPY_FILES += \
 
 # Bluetooth (razor-MOB30X)
 PRODUCT_COPY_FILES += \
-    vendor/xiaomi/armani/proprietary/bin/hci_qcomm_init:system/bin/hci_qcomm_init
+    vendor/xiaomi/armani/proprietary/vendor/bin/hci_qcomm_init:system/vendor/bin/hci_qcomm_init \
+    vendor/xiaomi/armani/proprietary/vendor/lib/libaptX_encoder.so:system/vendor/lib/libaptX_encoder.so
 
 # Camera (V8.0.1.0)
 PRODUCT_COPY_FILES += \
-    vendor/xiaomi/armani/proprietary/bin/mm-qcamera-daemon:system/bin/mm-qcamera-daemon \
-    vendor/xiaomi/armani/proprietary/lib/hw/camera.vendor.msm8226.so:system/lib/hw/camera.vendor.msm8226.so \
-    vendor/xiaomi/armani/proprietary/lib/libmmcamera_interface.so:system/lib/libmmcamera_interface.so \
-    vendor/xiaomi/armani/proprietary/lib/libmmjpeg_interface.so:system/lib/libmmjpeg_interface.so \
+    vendor/xiaomi/armani/proprietary/vendor/bin/mm-qcamera-daemon:system/vendor/bin/mm-qcamera-daemon \
+    vendor/xiaomi/armani/proprietary/vendor/lib/hw/camera.vendor.msm8226.so:system/vendor/lib/hw/camera.vendor.msm8226.so \
+    vendor/xiaomi/armani/proprietary/vendor/lib/libmmcamera_interface.so:system/vendor/lib/libmmcamera_interface.so \
+    vendor/xiaomi/armani/proprietary/vendor/lib/libmmjpeg_interface.so:system/vendor/lib/libmmjpeg_interface.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libactuator_dw9714.so:system/vendor/lib/libactuator_dw9714.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libactuator_dw9714_camcorder.so:system/vendor/lib/libactuator_dw9714_camcorder.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libactuator_dw9714_camera.so:system/vendor/lib/libactuator_dw9714_camera.so \
@@ -96,7 +106,7 @@ PRODUCT_COPY_FILES += \
 
 # Camera (TheMuppets Motorola msm8226-common)
 PRODUCT_COPY_FILES += \
-    vendor/xiaomi/armani/proprietary/lib/libqomx_core.so:system/lib/libqomx_core.so \
+    vendor/xiaomi/armani/proprietary/vendor/lib/libqomx_core.so:system/vendor/lib/libqomx_core.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libjpegdhw.so:system/vendor/lib/libjpegdhw.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libjpegehw.so:system/vendor/lib/libjpegehw.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libmmcamera_hdr_gb_lib.so:system/vendor/lib/libmmcamera_hdr_gb_lib.so \
@@ -113,9 +123,9 @@ PRODUCT_COPY_FILES += \
 
 # Camera firmware (V8.0.1.0)
 PRODUCT_COPY_FILES += \
-    vendor/xiaomi/armani/proprietary/etc/firmware/cpp_firmware_v1_1_1.fw:system/etc/firmware/cpp_firmware_v1_1_1.fw \
-    vendor/xiaomi/armani/proprietary/etc/firmware/cpp_firmware_v1_1_6.fw:system/etc/firmware/cpp_firmware_v1_1_6.fw \
-    vendor/xiaomi/armani/proprietary/etc/firmware/cpp_firmware_v1_2_0.fw:system/etc/firmware/cpp_firmware_v1_2_0.fw
+    vendor/xiaomi/armani/proprietary/vendor/firmware/cpp_firmware_v1_1_1.fw:system/vendor/firmware/cpp_firmware_v1_1_1.fw \
+    vendor/xiaomi/armani/proprietary/vendor/firmware/cpp_firmware_v1_1_6.fw:system/vendor/firmware/cpp_firmware_v1_1_6.fw \
+    vendor/xiaomi/armani/proprietary/vendor/firmware/cpp_firmware_v1_2_0.fw:system/vendor/firmware/cpp_firmware_v1_2_0.fw
 
 # Chromatix (V8.0.1.0)
 PRODUCT_COPY_FILES += \
@@ -135,7 +145,7 @@ PRODUCT_COPY_FILES += \
 
 # DRM (seed)
 PRODUCT_COPY_FILES += \
-    vendor/xiaomi/armani/proprietary/bin/qseecomd:system/bin/qseecomd \
+    vendor/xiaomi/armani/proprietary/vendor/bin/qseecomd:system/vendor/bin/qseecomd \
     vendor/xiaomi/armani/proprietary/vendor/lib/libdrmdecrypt.so:system/vendor/lib/libdrmdecrypt.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libdrmfs.so:system/vendor/lib/libdrmfs.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libdrmtime.so:system/vendor/lib/libdrmtime.so \
@@ -148,27 +158,22 @@ PRODUCT_COPY_FILES += \
     vendor/xiaomi/armani/proprietary/vendor/lib/hw/vendor.qti.hardware.fm@1.0-impl.so:system/vendor/lib/hw/vendor.qti.hardware.fm@1.0-impl.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/vendor.qti.hardware.fm@1.0_vendor.so:system/vendor/lib/vendor.qti.hardware.fm@1.0_vendor.so
 
-# GPS (TheMuppets Motorola msm8226-common)
+# GPS (TheMuppets Xiaomi cancro)
 PRODUCT_COPY_FILES += \
-    vendor/xiaomi/armani/proprietary/bin/location-mq:system/bin/location-mq \
-    vendor/xiaomi/armani/proprietary/etc/gps.conf:system/etc/gps.conf \
-    vendor/xiaomi/armani/proprietary/etc/izat.conf:system/etc/izat.conf \
-    vendor/xiaomi/armani/proprietary/etc/quipc.conf:system/etc/quipc.conf \
-    vendor/xiaomi/armani/proprietary/etc/sap.conf:system/etc/sap.conf \
-    vendor/xiaomi/armani/proprietary/etc/xtwifi.conf:system/etc/xtwifi.conf \
-    vendor/xiaomi/armani/proprietary/etc/xtra_root_cert.pem:system/etc/xtra_root_cert.pem \
+    vendor/xiaomi/armani/proprietary/vendor/bin/loc_launcher:system/vendor/bin/loc_launcher \
     vendor/xiaomi/armani/proprietary/lib/libloc_api_v02.so:system/lib/libloc_api_v02.so \
-    vendor/xiaomi/armani/proprietary/lib/libloc_ds_api.so:system/lib/libloc_ds_api.so \
+    vendor/xiaomi/armani/proprietary/vendor/lib/hw/flp.default.so:system/vendor/lib/hw/flp.default.so \
+    vendor/xiaomi/armani/proprietary/vendor/lib/libflp.so:system/vendor/lib/libflp.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libgeofence.so:system/vendor/lib/libgeofence.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libizat_core.so:system/vendor/lib/libizat_core.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/liblbs_core.so:system/vendor/lib/liblbs_core.so
 
 # Graphics (TheMuppets Motorola msm8226-common)
 PRODUCT_COPY_FILES += \
-    vendor/xiaomi/armani/proprietary/etc/firmware/a300_pfp.fw:system/etc/firmware/a300_pfp.fw \
-    vendor/xiaomi/armani/proprietary/etc/firmware/a300_pm4.fw:system/etc/firmware/a300_pm4.fw \
-    vendor/xiaomi/armani/proprietary/etc/firmware/a330_pfp.fw:system/etc/firmware/a330_pfp.fw \
-    vendor/xiaomi/armani/proprietary/etc/firmware/a330_pm4.fw:system/etc/firmware/a330_pm4.fw \
+    vendor/xiaomi/armani/proprietary/vendor/firmware/a300_pfp.fw:system/vendor/firmware/a300_pfp.fw \
+    vendor/xiaomi/armani/proprietary/vendor/firmware/a300_pm4.fw:system/vendor/firmware/a300_pm4.fw \
+    vendor/xiaomi/armani/proprietary/vendor/firmware/a330_pfp.fw:system/vendor/firmware/a330_pfp.fw \
+    vendor/xiaomi/armani/proprietary/vendor/firmware/a330_pm4.fw:system/vendor/firmware/a330_pm4.fw \
     vendor/xiaomi/armani/proprietary/vendor/lib/egl/eglsubAndroid.so:system/vendor/lib/egl/eglsubAndroid.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/egl/libEGL_adreno.so:system/vendor/lib/egl/libEGL_adreno.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/egl/libGLESv1_CM_adreno.so:system/vendor/lib/egl/libGLESv1_CM_adreno.so \
@@ -205,35 +210,27 @@ PRODUCT_COPY_FILES += \
 
 # Perf (TheMuppets Motorola msm8226-common)
 PRODUCT_COPY_FILES += \
-    vendor/xiaomi/armani/proprietary/bin/mpdecision:system/bin/mpdecision \
+    vendor/xiaomi/armani/proprietary/vendor/bin/mpdecision:system/vendor/bin/mpdecision \
     vendor/xiaomi/armani/proprietary/vendor/lib/libqti-perfd-client.so:system/vendor/lib/libqti-perfd-client.so
 
 # Qualcomm (TheMuppets Xiaomi cancro)
 PRODUCT_COPY_FILES += \
-    vendor/xiaomi/armani/proprietary/bin/irsc_util:system/bin/irsc_util \
-    vendor/xiaomi/armani/proprietary/vendor/lib/libdiag.so:system/vendor/lib/libdiag.so \
-    vendor/xiaomi/armani/proprietary/vendor/lib/libdsutils.so:system/vendor/lib/libdsutils.so \
-    vendor/xiaomi/armani/proprietary/vendor/lib/libidl.so:system/vendor/lib/libidl.so \
-    vendor/xiaomi/armani/proprietary/vendor/lib/libqcci_legacy.so:system/vendor/lib/libqcci_legacy.so \
+    vendor/xiaomi/armani/proprietary/vendor/bin/irsc_util:system/vendor/bin/irsc_util \
     vendor/xiaomi/armani/proprietary/vendor/lib/libqdi.so:system/vendor/lib/libqdi.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libqdp.so:system/vendor/lib/libqdp.so \
-    vendor/xiaomi/armani/proprietary/vendor/lib/libqmi.so:system/vendor/lib/libqmi.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libqmi_cci.so:system/vendor/lib/libqmi_cci.so \
-    vendor/xiaomi/armani/proprietary/vendor/lib/libqmi_client_qmux.so:system/vendor/lib/libqmi_client_qmux.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libqmi_common_so.so:system/vendor/lib/libqmi_common_so.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libqmi_csi.so:system/vendor/lib/libqmi_csi.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libqmi_encdec.so:system/vendor/lib/libqmi_encdec.so \
-    vendor/xiaomi/armani/proprietary/vendor/lib/libqmiservices.so:system/vendor/lib/libqmiservices.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libsmemlog.so:system/vendor/lib/libsmemlog.so
 
 # Radio (TheMuppets Xiaomi cancro)
 PRODUCT_COPY_FILES += \
-    vendor/xiaomi/armani/proprietary/bin/netmgrd:system/bin/netmgrd \
-    vendor/xiaomi/armani/proprietary/bin/qmuxd:system/bin/qmuxd \
-    vendor/xiaomi/armani/proprietary/bin/radish:system/bin/radish \
-    vendor/xiaomi/armani/proprietary/bin/rfs_access:system/bin/rfs_access \
-    vendor/xiaomi/armani/proprietary/bin/rmt_storage:system/bin/rmt_storage \
-    vendor/xiaomi/armani/proprietary/lib/libmdmdetect.so:system/lib/libmdmdetect.so \
+    vendor/xiaomi/armani/proprietary/vendor/bin/netmgrd:system/vbin/netmgrd \
+    vendor/xiaomi/armani/proprietary/vendor/bin/qmuxd:system/vendor/bin/qmuxd \
+    vendor/xiaomi/armani/proprietary/vendor/bin/radish:system/vendor/bin/radish \
+    vendor/xiaomi/armani/proprietary/vendor/bin/rfs_access:system/vendor/bin/rfs_access \
+    vendor/xiaomi/armani/proprietary/vendor/bin/rmt_storage:system/vendor/bin/rmt_storage \
     vendor/xiaomi/armani/proprietary/vendor/lib/libcneapiclient.so:system/vendor/lib/libcneapiclient.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libconfigdb.so:system/vendor/lib/libconfigdb.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libdsi_netctrl.so:system/vendor/lib/libdsi_netctrl.so \
@@ -246,7 +243,7 @@ PRODUCT_COPY_FILES += \
 
 # Sensors (TheMuppets Xiaomi cancro)
 PRODUCT_COPY_FILES += \
-    vendor/xiaomi/armani/proprietary/bin/sensors.qcom:system/bin/sensors.qcom \
+    vendor/xiaomi/armani/proprietary/vendor/bin/sensors.qcom:system/vendor/bin/sensors.qcom \
     vendor/xiaomi/armani/proprietary/vendor/lib/libAKM8963.so:system/vendor/lib/libAKM8963.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libsensor1.so:system/vendor/lib/libsensor1.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libsensor_reg.so:system/vendor/lib/libsensor_reg.so \
@@ -256,25 +253,23 @@ PRODUCT_COPY_FILES += \
 
 # Thermal (V8.0.1.0)
 PRODUCT_COPY_FILES += \
-    vendor/xiaomi/armani/proprietary/bin/thermal-engine:system/bin/thermal-engine \
+    vendor/xiaomi/armani/proprietary/vendor/bin/thermal-engine:system/vendor/bin/thermal-engine \
     vendor/xiaomi/armani/proprietary/vendor/lib/libthermalclient.so:system/vendor/lib/libthermalclient.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libthermalioctl.so:system/vendor/lib/libthermalioctl.so
 
-# Time services (TheMuppets Motorola msm8226-common)
+# Time services (TheMuppets Xiaomi cancro)
 PRODUCT_COPY_FILES += \
-    vendor/xiaomi/armani/proprietary/bin/time_daemon:system/bin/time_daemon \
-    vendor/xiaomi/armani/proprietary/vendor/lib/libtime_genoff.so:system/vendor/lib/libtime_genoff.so \
-    vendor/xiaomi/armani/proprietary/vendor/lib/libTimeService.so:system/vendor/lib/libTimeService.so
+    vendor/xiaomi/armani/proprietary/vendor/bin/time_daemon:system/vendor/bin/time_daemon
 
 # Venus (media) firmware (V8.0.1.0)
 PRODUCT_COPY_FILES += \
-    vendor/xiaomi/armani/proprietary/etc/firmware/venus.b00:system/etc/firmware/venus.b00 \
-    vendor/xiaomi/armani/proprietary/etc/firmware/venus.b01:system/etc/firmware/venus.b01 \
-    vendor/xiaomi/armani/proprietary/etc/firmware/venus.b02:system/etc/firmware/venus.b02 \
-    vendor/xiaomi/armani/proprietary/etc/firmware/venus.b03:system/etc/firmware/venus.b03 \
-    vendor/xiaomi/armani/proprietary/etc/firmware/venus.b04:system/etc/firmware/venus.b04 \
-    vendor/xiaomi/armani/proprietary/etc/firmware/venus.mbn:system/etc/firmware/venus.mbn \
-    vendor/xiaomi/armani/proprietary/etc/firmware/venus.mdt:system/etc/firmware/venus.mdt
+    vendor/xiaomi/armani/proprietary/vendor/firmware/venus.b00:system/vendor/firmware/venus.b00 \
+    vendor/xiaomi/armani/proprietary/vendor/firmware/venus.b01:system/vendor/firmware/venus.b01 \
+    vendor/xiaomi/armani/proprietary/vendor/firmware/venus.b02:system/vendor/firmware/venus.b02 \
+    vendor/xiaomi/armani/proprietary/vendor/firmware/venus.b03:system/vendor/firmware/venus.b03 \
+    vendor/xiaomi/armani/proprietary/vendor/firmware/venus.b04:system/vendor/firmware/venus.b04 \
+    vendor/xiaomi/armani/proprietary/vendor/firmware/venus.mbn:system/vendor/firmware/venus.mbn \
+    vendor/xiaomi/armani/proprietary/vendor/firmware/venus.mdt:system/vendor/firmware/venus.mdt
 
 # WideVine (angler)
 PRODUCT_COPY_FILES += \
@@ -282,14 +277,14 @@ PRODUCT_COPY_FILES += \
 
 # Wifi (V8.0.1.0)
 PRODUCT_COPY_FILES += \
-    vendor/xiaomi/armani/proprietary/etc/firmware/wcnss.b00:system/etc/firmware/wcnss.b00 \
-    vendor/xiaomi/armani/proprietary/etc/firmware/wcnss.b01:system/etc/firmware/wcnss.b01 \
-    vendor/xiaomi/armani/proprietary/etc/firmware/wcnss.b02:system/etc/firmware/wcnss.b02 \
-    vendor/xiaomi/armani/proprietary/etc/firmware/wcnss.b04:system/etc/firmware/wcnss.b04 \
-    vendor/xiaomi/armani/proprietary/etc/firmware/wcnss.b06:system/etc/firmware/wcnss.b06 \
-    vendor/xiaomi/armani/proprietary/etc/firmware/wcnss.b07:system/etc/firmware/wcnss.b07 \
-    vendor/xiaomi/armani/proprietary/etc/firmware/wcnss.b08:system/etc/firmware/wcnss.b08 \
-    vendor/xiaomi/armani/proprietary/etc/firmware/wcnss.b09:system/etc/firmware/wcnss.b09 \
-    vendor/xiaomi/armani/proprietary/etc/firmware/wcnss.mdt:system/etc/firmware/wcnss.mdt \
+    vendor/xiaomi/armani/proprietary/vendor/firmware/wcnss.b00:system/vendor/firmware/wcnss.b00 \
+    vendor/xiaomi/armani/proprietary/vendor/firmware/wcnss.b01:system/vendor/firmware/wcnss.b01 \
+    vendor/xiaomi/armani/proprietary/vendor/firmware/wcnss.b02:system/vendor/firmware/wcnss.b02 \
+    vendor/xiaomi/armani/proprietary/vendor/firmware/wcnss.b04:system/vendor/firmware/wcnss.b04 \
+    vendor/xiaomi/armani/proprietary/vendor/firmware/wcnss.b06:system/vendor/firmware/wcnss.b06 \
+    vendor/xiaomi/armani/proprietary/vendor/firmware/wcnss.b07:system/vendor/firmware/wcnss.b07 \
+    vendor/xiaomi/armani/proprietary/vendor/firmware/wcnss.b08:system/vendor/firmware/wcnss.b08 \
+    vendor/xiaomi/armani/proprietary/vendor/firmware/wcnss.b09:system/vendor/firmware/wcnss.b09 \
+    vendor/xiaomi/armani/proprietary/vendor/firmware/wcnss.mdt:system/vendor/firmware/wcnss.mdt \
     vendor/xiaomi/armani/proprietary/lib/libqminvapi.so:system/lib/libqminvapi.so
 
