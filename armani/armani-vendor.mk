@@ -21,6 +21,7 @@ PRODUCT_PACKAGES += \
 # Prebuilt vendor/libs needed for compilation
 PRODUCT_PACKAGES += \
     libqminvapi \
+    libTimeService \
     libtime_genoff \
     vendor.qti.hardware.fm@1.0
 
@@ -226,6 +227,7 @@ PRODUCT_COPY_FILES += \
     vendor/xiaomi/armani/proprietary/vendor/lib/libqmi_client_qmux.so:system/vendor/lib/libqmi_client_qmux.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libqmi_common_so.so:system/vendor/lib/libqmi_common_so.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libqmi_csi.so:system/vendor/lib/libqmi_csi.so \
+    vendor/xiaomi/armani/proprietary/vendor/lib/libqmi_csvt_srvc.so:system/vendor/lib/libqmi_csvt_srvc.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libqmi_encdec.so:system/vendor/lib/libqmi_encdec.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libqmiservices.so:system/vendor/lib/libqmiservices.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libsmemlog.so:system/vendor/lib/libsmemlog.so
@@ -241,6 +243,7 @@ PRODUCT_COPY_FILES += \
     vendor/xiaomi/armani/proprietary/vendor/lib/libconfigdb.so:system/vendor/lib/libconfigdb.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libdsi_netctrl.so:system/vendor/lib/libdsi_netctrl.so \
     vendor/xiaomi/armani/proprietary/lib/libmdmdetect.so:system/lib/libmdmdetect.so \
+    vendor/xiaomi/armani/proprietary/lib/libmdmcutback.so:system/lib/libmdmcutback.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libnetmgr.so:system/vendor/lib/libnetmgr.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libperipheral_client.so:system/vendor/lib/libperipheral_client.so \
     vendor/xiaomi/armani/proprietary/vendor/lib/libril-qc-qmi-1.so:system/vendor/lib/libril-qc-qmi-1.so \
@@ -266,9 +269,7 @@ PRODUCT_COPY_FILES += \
 
 # Time services (TheMuppets Motorola msm8226-common)
 PRODUCT_COPY_FILES += \
-    vendor/xiaomi/armani/proprietary/vendor/bin/time_daemon:system/vendor/bin/time_daemon \
-    vendor/xiaomi/armani/proprietary/vendor/lib/libtime_genoff.so:system/vendor/lib/libtime_genoff.so \
-    vendor/xiaomi/armani/proprietary/vendor/lib/libTimeService.so:system/vendor/lib/libTimeService.so
+    vendor/xiaomi/armani/proprietary/vendor/bin/time_daemon:system/vendor/bin/time_daemon
 
 # Venus (media) firmware (V8.0.1.0)
 PRODUCT_COPY_FILES += \
@@ -286,7 +287,6 @@ PRODUCT_COPY_FILES += \
 
 # Wifi (V8.0.1.0)
 PRODUCT_COPY_FILES += \
-    vendor/xiaomi/armani/proprietary/lib/libqminvapi.so:system/lib/libqminvapi.so \
     vendor/xiaomi/armani/proprietary/vendor/firmware/wcnss.b00:system/vendor/firmware/wcnss.b00 \
     vendor/xiaomi/armani/proprietary/vendor/firmware/wcnss.b01:system/vendor/firmware/wcnss.b01 \
     vendor/xiaomi/armani/proprietary/vendor/firmware/wcnss.b02:system/vendor/firmware/wcnss.b02 \
